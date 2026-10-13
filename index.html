@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101113">
+  <title>МУЗЫКАЛЬНОЕ КАФЕ СВА</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        const swUrl = new URL("./sw.js", document.baseURI);
+        const scopeUrl = new URL("./", document.baseURI);
+
+        navigator.serviceWorker.register(swUrl, {
+          scope: scopeUrl.pathname
+        }).catch((error) => {
+          console.error("Не удалось зарегистрировать Service Worker:", error);
+        });
+      });
+    }
+  </script>
+  <script src="auth.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <header class="playlist-header">
+      <h1 id="playlist-title">МУЗЫКАЛЬНОЕ КАФЕ СВА</h1>
+    </header>
+
+    <section id="track-list" aria-label="Список треков"></section>
+    <p class="message" id="message"></p>
+  </main>
+
+  <audio id="audio" preload="metadata"></audio>
+
+  <aside class="mini-player" id="mini-player" hidden>
+    <input
+      class="timeline mini-timeline"
+      id="mini-progress"
+      type="range"
+      min="0"
+      max="1000"
+      value="0"
+      aria-label="Позиция воспроизведения"
+    >
+
+    <div class="mini-inner">
+      <img class="mini-cover" id="mini-cover" alt="">
+
+      <div
+        class="mini-details"
+        id="open-player"
+        role="button"
+        tabindex="0"
+        aria-label="Открыть экран плеера"
+      >
+        <div class="mini-title" id="mini-title"></div>
+        <div class="mini-time" id="mini-time">0:00 / --:--</div>
+      </div>
+
+      <div class="mini-controls">
+        <button
+          class="shuffle-button"
+          id="mini-shuffle"
+          type="button"
+          aria-label="Перемешать треки"
+          aria-pressed="false"
+          title="Перемешать треки"
+        ></button>
+
+        <button
+          class="icon-button"
+          id="previous-track"
+          type="button"
+          aria-label="Предыдущий трек"
+          title="Предыдущий трек"
+        ></button>
+
+        <button
+          class="play-button"
+          id="mini-play"
+          type="button"
+          aria-label="Воспроизвести"
+        ></button>
+
+        <button
+          class="icon-button"
+          id="next-track"
+          type="button"
+          aria-label="Следующий трек"
+          title="Следующий трек"
+        ></button>
+      </div>
+    </div>
+  </aside>
+
+  <section
+    class="player-screen"
+    id="player-screen"
+    aria-label="Плеер"
+    aria-hidden="true"
+  >
+    <div class="player-content">
+      <header class="screen-top">
+        <button
+          class="close-button"
+          id="close-player"
+          type="button"
+          aria-label="Закрыть плеер"
+          title="Закрыть плеер"
+        ></button>
+
+        <span class="now-playing">СЕЙЧАС ИГРАЕТ</span>
+        <span class="top-spacer" aria-hidden="true"></span>
+      </header>
+
+      <img class="big-cover" id="big-cover" alt="Обложка трека">
+      <h2 class="full-title" id="full-title"></h2>
+
+      <div class="full-time-row">
+        <span id="full-current-time">0:00</span>
+        <span id="full-duration">--:--</span>
+      </div>
+
+      <input
+        class="timeline"
+        id="full-progress"
+        type="range"
+        min="0"
+        max="1000"
+        value="0"
+        aria-label="Позиция воспроизведения"
+      >
+
+      <div class="full-controls">
+        <div class="control-side left">
+          <a
+            class="download-button"
+            id="download-track"
+            href="#"
+            aria-label="Скачать трек"
+            title="Скачать трек"
+            aria-disabled="true"
+          ></a>
+
+          <button
+            class="icon-button"
+            id="full-previous"
+            type="button"
+            aria-label="Предыдущий трек"
+            title="Предыдущий трек"
+          ></button>
+        </div>
+
+        <button
+          class="play-button"
+          id="full-play"
+          type="button"
+          aria-label="Воспроизвести"
+        ></button>
+
+        <div class="control-side right">
+          <button
+            class="icon-button"
+            id="full-next"
+            type="button"
+            aria-label="Следующий трек"
+            title="Следующий трек"
+          ></button>
+
+          <button
+            class="shuffle-button"
+            id="full-shuffle"
+            type="button"
+            aria-label="Перемешать треки"
+            aria-pressed="false"
+            title="Перемешать треки"
+          ></button>
+        </div>
+      </div>
+
+      <section class="clip-section" id="clip-section" hidden>
+        <h3 class="clip-heading">Клип к аудио</h3>
+        <div class="video-wrap" id="video-wrap">
+          <video id="video" controls playsinline preload="metadata"></video>
+        </div>
+      </section>
+    </div>
+  </section>
+</body>
+</html>

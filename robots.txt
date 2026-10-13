@@ -1,0 +1,51 @@
+# robots.txt для блокировки AI-краулеров
+# Обычные поисковики (Google, Bing) НЕ блокируются
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# Google Gemini (только AI-функции)
+User-agent: Google-Extended
+Disallow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Disallow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Disallow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+# Cohere
+User-agent: cohere-ai
+Disallow: /
+
+# ByteDance / TikTok
+User-agent: Bytespider
+Disallow: /
+
+# Common Crawl
+User-agent: CCBot
+Disallow: /
+
+# Блокировка папок с медиа для всех остальных ботов
+User-agent: *
+Disallow: /content/
